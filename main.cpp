@@ -19,30 +19,26 @@ void fillVector(std::vector<float> &vector) {
     }
 }
 
-void multiply(float array[4][4], std::vector<float> vector, float multiplyResult[4][4]) {
-    float result = 0;
+void multiply(float array[4][4], std::vector<float> vector, std::vector<float> &multiplyResult) {
     for (int i = 0; i < 4; i++) {
+        float result = 0;
         for (int j = 0; j < 4; j++) {
-            result = array[i][j] * vector[i];
-            multiplyResult[i][j] = result;
+            result += array[i][j] * vector[j];
         }
+        multiplyResult[i] = result;
     }
 }
 
-void printArray(float arr[4][4]) {
+void printArray(std::vector<float> vector) {
     for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 4; j++) {
-            std::cout << arr[i][j] << " ";
-        }
-        std::cout << std::endl;
+        std::cout << vector[i] << " ";
     }
 }
 
 int main() {
-
     std::vector<float> vector;
     float array[4][4];
-    float multiplyResult[4][4];
+    std::vector<float> multiplyResult(4);
 
     std::cout << "Input elements of array: ";
     fillArray(array);
